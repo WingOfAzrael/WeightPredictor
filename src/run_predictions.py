@@ -11,19 +11,17 @@ from pathlib import Path
 from weight_predictor import WeightPredictors
 
 def load_config():
-    """Load configuration file for model parameters."""
 
-    # Get the directory of the currently running script
+    #Get the directory of the currently running script
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
-    # Construct the relative path to config.yaml
+    #Construct the relative path to config.yaml
     config_path = os.path.join(script_dir, 'config.yaml')
     with open(config_path, 'r') as file:
         config = yaml.safe_load(file)
     return config
 
 def analyze_data(original_data, predicted_weights, weight_data, model_name, model_index, truckSIDs_train, truckSIDs_test):
-    """Analyze the model's performance and generate plots for correlations and weights."""
     
 
     front = [ np.round(np.average(i), 0) for i in np.array_split(np.array([i[0] for i in weight_data]), len(predicted_weights))]
@@ -32,21 +30,21 @@ def analyze_data(original_data, predicted_weights, weight_data, model_name, mode
     
     actuals = [front, back, total]
 
-    # Create output directory if it doesn't exist
+    #Create output directory if it doesn't exist
     output_dir = os.path.join(os.path.dirname(__file__), "../outputs")
     os.makedirs(output_dir, exist_ok=True)
-    # Define the file path within the output directory
+    #Define the file path within the output directory
     file_path = os.path.join(output_dir, f"predictions_{model_name}.pdf")
     pdf_pages = PdfPages(file_path)
 
-    # Create correlation matrices
+    #Create correlation matrices
     corr_df_train = pd.DataFrame(original_data)
     corr_df_test = pd.DataFrame(predicted_weights)
     weight_labels = ['PredictedWeightFront', 'PredictedWeightBack', 'PredictedWeightTotal']
 
     full_matrix = pd.concat([corr_df_train, corr_df_test], axis=1).corr()
     
-    # Plot correlation matrices
+    #Plot correlation matrices
     sns.set(font_scale=0.5)
     plt.figure(figsize=(10, 8))
     sns.heatmap(full_matrix, annot=True, cmap='coolwarm', fmt='.2f')
@@ -54,7 +52,7 @@ def analyze_data(original_data, predicted_weights, weight_data, model_name, mode
     pdf_pages.savefig()
     plt.clf()
 
-    # Histogram of Actual vs Predicted Weights
+    #Histogram of Actual vs Predicted Weights
     types = ['MAPE front', 'MAPE back', 'MAPE total', '$R^2$ (training)', '$R^2$ (prediction)']
     weight_types = ['front', 'back', 'total']
     for ind in range(len(weight_data.transpose())):
@@ -139,13 +137,13 @@ def main():
         print('Mean squred error           : {} ({})'.format(np.mean(mean_scores), np.std(mean_scores)))
 
 
-        # Save predictions as CSV
+        #Save predictions as CSV
         predictions_df = pd.DataFrame(
             predictions,
             columns=['PredictedWeightFront', 'PredictedWeightBack', 'PredictedWeightTotal']
         )
 
-        # reate output directory if it doesn't exist
+        #Create output directory if it doesn't exist
         output_dir = os.path.join(os.path.dirname(__file__), "../outputs")
         os.makedirs(output_dir, exist_ok=True)
 

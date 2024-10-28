@@ -1,0 +1,11 @@
+pandas==2.1.1
+numpy==1.25.2
+scikit-learn==1.3.2
+joblib==1.4.2 
+matplotlib==3.7.3
+seaborn==0.12.2
+xgboost==1.7.6     # Optional, if used in future model implementations
+scipy==1.11.2
+shap==0.42.1
+pyyaml==6.0         # For loading the configuration file
+ipywidgets==8.1.0   # Optional, used if needed for widget-based outputs

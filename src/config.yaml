@@ -1,0 +1,15 @@
+
+paths:      # File paths for training and testing data (testing data contains all vectors except vectors to be predicted)
+  train_data: "../data/training_acu.csv"
+  test_data: "../data/testing_acu.csv"
+
+model:
+  choices:  # List of models to choose from: 'Logistic Regression', 'RandomForestRegressor', 'Gradient Boosting Regressor', 'Ada Boost Regressor', 'Decision Tree Regressor', 'Support Vector Regression'
+            #Possible choices defined in weight_predictor class. Extend here 
+    - "RandomForestRegressor"
+    - "GradientBoostingRegressor"
+    - "SVR"  # You can add/remove models from this list
+
+training:
+  test_size: 0.2
+  random_state: 42

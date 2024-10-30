@@ -65,10 +65,12 @@ training:
 
 Run the prediction script to train models and generate predictions:
 
-```
+
 bash command
+
 ```
 python src/run_predictions.py
+```
 
 This script:
 

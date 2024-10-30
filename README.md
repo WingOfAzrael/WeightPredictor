@@ -1,6 +1,6 @@
 # Truck Axle Weight Prediction
 
-This project predicts truck weights (front, rear, and total) using machine learning models. Using historical weight data and relevant vehicle features, the system forecasts truck weights based on new data inputs.
+This project predicts truck weights (front, rear, and total) using machine learning models. Using historical weight data and relevant vehicle features, the system predicts truck weights based on new data inputs.
 Project Structure
 
 ```
@@ -23,7 +23,7 @@ Project Structure
 ```
 ## Goal
 
-The goal of this project is to predict the front, rear, and total weights of trucks using machine learning models that leverage key vehicle features.
+The goal of this project is to predict the front, rear, and total weights of trucks using machine-learning models that leverage key vehicle features.
 Tasks
 
     Data Analysis: Analyze and explore the provided training data to understand patterns in truck weight based on features.
@@ -36,13 +36,14 @@ Tasks
 
 Ensure you have Python 3.8+ installed. Install dependencies from requirements.txt:
 
-bash
+bash command 
 
+```
 pip install -r requirements.txt
-
+```
 2. Project Configuration
 
-Set up the paths and model parameters in config.yaml:
+Set up the paths and model parameters in the config.yaml file:
 
 yaml
 
@@ -64,8 +65,9 @@ training:
 
 Run the prediction script to train models and generate predictions:
 
-bash
-
+```
+bash command
+```
 python src/run_predictions.py
 
 This script:
@@ -104,20 +106,14 @@ For each model specified in config.yaml, the script evaluates and records:
     Add More Models: Extend the model_choices in config.yaml and model_method in weight_predictor.py to include additional models, such as AdaBoostRegressor or DecisionTreeRegressor.
     Adjust Data Processing: Modify clean_data and align_columns in weight_predictor.py for different preprocessing requirements or new data columns.
     SHAP Explanations: explain_with_shap (in weight_predictor.py) provides SHAP visualizations for model interpretability, showing feature contributions.
+    Fuel consumption predictions: use the weight predictions to predict fuel consumption for logistical optimisation.
 
-## Requirements
-
-Refer to requirements.txt for all dependencies. Key libraries include:
-
-    scikit-learn: Machine learning models and tools
-    pandas and numpy: Data handling and manipulation
-    matplotlib and seaborn: Data visualization
-    shap: Model interpretability (optional)
-    pyyaml: Configuration file handling
 
 ## Acknowledgments
 
-This project was developed as part of a data science assessment. The goal was to predict truck weights and report the findings for further analysis.
+This project was developed as part of a data science assessment. The goal was to predict truck weights and report the findings for further analysis. 
+
+
 License
 
 This project is licensed under the MIT License.
